@@ -13,6 +13,8 @@ import java.util.Set;
 @Setter
 public class StudentsYear {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
 	private String code;

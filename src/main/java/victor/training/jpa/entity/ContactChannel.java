@@ -2,12 +2,11 @@ package victor.training.jpa.entity;
 
 import lombok.Getter;
 
-import javax.persistence.Embeddable;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 
 @Getter
-
+@Entity
+@Table(name = "channel")
 public class ContactChannel {
 
 	public enum Type {
@@ -19,12 +18,16 @@ public class ContactChannel {
 		FACEBOOK,
 		LINKED_IN
 	}
-	
-	private Type type;
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id", nullable = false)
 	private String id;
-	
-	private ContactChannel() {
+
+	@Column(name = "type")
+	@Enumerated(EnumType.STRING)
+	private Type type;
+
+	protected ContactChannel() {
 	}
 
 	public ContactChannel(Type type, String id) {

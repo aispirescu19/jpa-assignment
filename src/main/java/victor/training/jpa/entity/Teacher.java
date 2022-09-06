@@ -12,7 +12,8 @@ import java.util.Set;
 
 @Getter
 @Setter
-
+@Entity
+@Table(name = "teacher")
 public class Teacher {
 
 	public enum Grade {
@@ -27,27 +28,46 @@ public class Teacher {
 		}
 	}
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id", nullable = false)
 	private Long id;
 
+	@Column(name = "name")
 	private String name;
 
+	@Column(name = "grade")
+	@Enumerated(EnumType.STRING)
 	private Grade grade;
 
+	@OneToOne
+	@JoinColumn(name = "details_id")
 	private TeacherDetails details;
 
 	// TODO order by type and value ASC
+	@OneToMany
+	@JoinColumn(name = "id_channel")
+//	@OrderBy("channel.type ASC")
 	private List<ContactChannel> channels = new ArrayList<>();
 
+	@OneToMany
+	@JoinColumn(name = "held_subject_id")
 	private Set<Subject> heldSubjects = new HashSet<>() ;
 
+	@OneToMany
+	@JoinColumn(name = "id_teaching_activity")
 	private Set<TeachingActivity> activities = new HashSet<>();
 
+	@Column(name = "counseling_day")
 	private DayOfWeek counselingDay;
 
+	@Column(name = "counseling_start_hour")
 	private Integer counselingStartHour;
 
+	@Column(name = "counseling_duration_in_hours")
 	private Integer counselingDurationInHours;
 
+	@Column(name = "counseling_room_id")
 	private String counselingRoomId;
 
 	public Teacher() {

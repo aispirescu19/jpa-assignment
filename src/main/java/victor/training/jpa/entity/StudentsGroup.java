@@ -13,14 +13,21 @@ import java.util.Set;
 @Setter
 
 public class StudentsGroup {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
+	@Column(name = "name")
 	private String code;
 
+	@Column(name = "name")
 	private StudentsYear year;
 
+	@ManyToOne
+	@JoinColumn(name = "lab_activity_id")
 	private Set<LabActivity> labs = new HashSet<>();
-	
+
+	@Column(name = "emails")
 	private List<String> emails = new ArrayList<>();
 
 	public StudentsGroup() {

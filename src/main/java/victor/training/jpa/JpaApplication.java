@@ -30,8 +30,8 @@ public class JpaApplication {
 
 	private void insertHere() {
 		// TODO when ready with the model, try to insert several entities of each type here, eg by:
-//		Teacher teacher1 = new Teacher().setName("John");
-//		entityManager.persist(teacher1);
+		Teacher teacher1 = new Teacher().setName("John");
+		entityManager.persist(teacher1);
 	}
 
 

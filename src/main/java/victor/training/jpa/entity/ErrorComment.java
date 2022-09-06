@@ -5,9 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Getter
 @Setter
@@ -15,7 +13,10 @@ import javax.persistence.Id;
 @NoArgsConstructor
 
 public class ErrorComment {
+   @Id
+   @GeneratedValue(strategy = GenerationType.AUTO)
    private Long id;
+   @Column(name = "text")
    private String text;
 
    public ErrorComment(String text) {
